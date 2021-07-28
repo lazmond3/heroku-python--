@@ -111,6 +111,7 @@ def save_image(filename, image):
 def send_image(path: str):
     return send_from_directory("./", path)
 
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     temp = event.message.text
@@ -136,4 +137,5 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token, image_message)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
