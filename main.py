@@ -110,6 +110,15 @@ def save_image(filename, image):
 @app.route("/images/<path:path>")
 def send_image(path: str):
     return send_from_directory("./", path)
+@app.route("/")
+def hello():
+    str_out = ""
+    str_out += "<h2>Hello from Python!</h2>"
+    str_out += "<blockquote>"
+    str_out += "こんにちは<p />"
+    str_out += "</blockquote>"
+    str_out += "Aug/07/2017 PM 12:49<br />"
+    return str_out
 
 
 @handler.add(MessageEvent, message=TextMessage)
