@@ -132,7 +132,7 @@ def handle_message(event):
     update_taion(temp, event.source.user_id)
     print(f"user id: {event.source.user_id}")
 
-    sleep(4.5)
+    sleep(8.5)
     now_timestamp: int = int(datetime.now().timestamp())
     if event.source.user_id == RYO_UID:
         image_url = os.getenv("RYO_IMAGE_URL")
