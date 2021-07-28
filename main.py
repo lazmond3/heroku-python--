@@ -136,22 +136,26 @@ def handle_message(event):
     now_timestamp: int = int(datetime.now().timestamp())
     if event.source.user_id == RYO_UID:
         image_url = os.getenv("RYO_IMAGE_URL")
-        image_data = download_image(image_url)
-        save_image(f"ryo_{now_timestamp}.png", image_data)
-        uploaded_image_url = (
-            f"https://python-taion.herokuapp.com/images/ryo_{now_timestamp}.png"
-        )
+        # image_data = download_image(image_url)
+        # save_image(f"ryo_{now_timestamp}.png", image_data)
+        # uploaded_image_url = (
+        #     f"https://python-taion.herokuapp.com/images/ryo_{now_timestamp}.png"
+        # )
     else:
         image_url = os.getenv("AI_IMAGE_URL")
-        image_data = download_image(image_url)
-        save_image(f"aina_{now_timestamp}.png", image_data)
-        uploaded_image_url = (
-            f"https://python-taion.herokuapp.com/images/aina_{now_timestamp}.png"
-        )
+        # image_data = download_image(image_url)
+        # save_image(f"aina_{now_timestamp}.png", image_data)
+        # uploaded_image_url = (
+        #     f"https://python-taion.herokuapp.com/images/aina_{now_timestamp}.png"
+        # )
 
+    # image_message = ImageSendMessage(
+    #     original_content_url=uploaded_image_url,
+    #     preview_image_url=uploaded_image_url,
+    # )
     image_message = ImageSendMessage(
-        original_content_url=uploaded_image_url,
-        preview_image_url=uploaded_image_url,
+        original_content_url=image_url + f"&{now_timestamp}",
+        preview_image_url=image_url + f"&{now_timestamp}"
     )
 
     line_bot_api.reply_message(event.reply_token, image_message)
